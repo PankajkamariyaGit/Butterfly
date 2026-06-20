@@ -20,6 +20,9 @@ build/
 # npm credentials — contains private auth token, DO NOT commit
 .npmrc
 
+# package-lock.json regenerated with corporate registry — Hostinger must regenerate fresh
+package-lock.json
+
 # Debug logs
 npm-debug.log*
 yarn-debug.log*

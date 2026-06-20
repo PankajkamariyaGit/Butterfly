@@ -273,7 +273,8 @@ export default function HomePage() {
             </div>
             <Link href="/products?filter=new" className="hidden md:flex items-center gap-2 font-body text-sm text-mink-light hover:text-champagne transition-colors tracking-[0.15em] uppercase">View All <ArrowRight size={14} /></Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">.map((product, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            {newArrivals.map((product, i) => (
               <motion.div key={product.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
                 <ProductCard product={product} />
               </motion.div>

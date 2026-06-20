@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 
 const TEAM = [
-  { name: "Riya Kapoor", role: "Founder & Creative Director", avatar: "RK" },
-  { name: "Meena Shah", role: "Head of Design", avatar: "MS" },
-  { name: "Priyanka Jain", role: "Head of Operations", avatar: "PJ" },
+  { name: "Pankaj Kamariya", role: "Co-Founder", avatar: "PK" },
+  { name: "Deepak Porwal", role: "Co-Founder", avatar: "DP" },
 ];
 
 export default function AboutPage() {

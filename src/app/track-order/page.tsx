@@ -88,7 +88,7 @@ export default function TrackOrderPage() {
         </form>
 
         <p className="text-xs text-center font-body text-mink-light -mt-8 mb-10">
-          Demo: try ORD-2026-0001 · ORD-2026-0002 · ORD-2026-0003
+          Use the Order ID from your order confirmation, or enter your email / mobile number.
         </p>
 
         {/* Result */}
@@ -96,7 +96,17 @@ export default function TrackOrderPage() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card rounded-sm p-10 text-center">
             <Clock size={40} className="text-mink-light/40 mx-auto mb-4" />
             <p className="font-display text-xl text-obsidian">Order not found</p>
-            <p className="text-sm font-body text-mink-light mt-2">Check your order ID or email and try again.</p>
+            <p className="text-sm font-body text-mink-light mt-2 max-w-sm mx-auto">
+              Please check your Order ID or email and try again. Orders placed on a different device may not appear here.
+            </p>
+            <a
+              href="https://wa.me/919833509027?text=Hi%2C%20I%20need%20help%20tracking%20my%20order"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 bg-champagne/10 border border-champagne/30 text-champagne font-body text-sm rounded-full hover:bg-champagne/20 transition-colors"
+            >
+              Contact us on WhatsApp
+            </a>
           </motion.div>
         )}
 

@@ -37,7 +37,7 @@ export default function VirtualTryOnPage() {
             <Eye size={16} className="text-champagne" />
             <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Powered by AR Technology</span>
           </div>
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-ivory">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl text-ivory">
             Virtual <em className="text-champagne">Try-On</em>
           </h1>
           <p className="mt-4 font-body text-ivory/55 text-base max-w-xl mx-auto leading-relaxed">
@@ -122,11 +122,11 @@ export default function VirtualTryOnPage() {
                   className="rounded-3xl overflow-hidden relative aspect-[3/4]"
                 >
                   <Image src={preview} alt="Your photo" fill className="object-cover" />
-                  {/* AR overlay simulation */}
+                  {/* AR overlay simulation — jewellery positioned at neck */}
                   <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-3/4 max-w-[200px]">
-                      <div className="relative w-full aspect-square opacity-70 mix-blend-multiply">
-                        <Image src={selected.images[0]} alt={selected.name} fill className="object-contain drop-shadow-xl" />
+                    <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-2/3 max-w-[180px]">
+                      <div className="relative w-full aspect-square" style={{ filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))", mixBlendMode: "screen" }}>
+                        <Image src={selected.images[0]} alt={selected.name} fill className="object-contain" unoptimized />
                       </div>
                     </div>
                     {/* AR detection dots */}
@@ -139,6 +139,10 @@ export default function VirtualTryOnPage() {
                     {["top-2 left-2 border-t border-l", "top-2 right-2 border-t border-r", "bottom-2 left-2 border-b border-l", "bottom-2 right-2 border-b border-r"].map((cls, i) => (
                       <div key={i} className={`absolute w-8 h-8 ${cls} border-champagne/60`} />
                     ))}
+                    {/* Note about image bg */}
+                    <div className="absolute top-3 left-3 right-3 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5">
+                      <p className="text-[9px] font-body text-white/70 text-center">✦ Preview mode — best results with plain background photos</p>
+                    </div>
                   </div>
                   {/* Controls */}
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">

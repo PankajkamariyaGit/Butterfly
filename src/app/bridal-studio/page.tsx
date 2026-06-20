@@ -98,7 +98,7 @@ export default function BridalStudioPage() {
               <Crown size={16} className="text-champagne" />
               <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Butterfly Bridal Studio</span>
             </div>
-            <h1 className="font-display text-6xl sm:text-7xl lg:text-8xl text-ivory leading-[0.9]">
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-8xl text-ivory leading-[0.9]">
               Your Wedding,<br /><em className="text-champagne">Your Story,</em><br />Our Jewellery
             </h1>
             <p className="mt-6 font-body text-ivory/65 text-lg leading-relaxed max-w-xl">

@@ -104,10 +104,10 @@ export default function CartPage() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="glass-card rounded-sm p-4 sm:p-5 flex gap-4 sm:gap-6"
+                  className="glass-card rounded-sm p-3 sm:p-5 flex gap-3 sm:gap-6"
                 >
                   <Link href={`/products/${product.slug}`} className="flex-shrink-0">
-                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-sm overflow-hidden bg-pearl">
+                    <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-sm overflow-hidden bg-pearl">
                       <Image
                         src={product.images[0]}
                         alt={product.name}
@@ -279,7 +279,7 @@ export default function CartPage() {
           <div className="border-t border-champagne/10 pt-12">
             <p className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase mb-2">✦ You Might Also Love</p>
             <h3 className="font-display text-3xl text-obsidian mb-8">Complete Your Look</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {crossSellProducts.map((p) => (
                 <div key={p.id} className="bg-pearl border border-champagne/10 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow group">
                   <div className="relative aspect-square overflow-hidden">

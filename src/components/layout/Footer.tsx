@@ -61,7 +61,7 @@ export default function Footer() {
       {/* Trust Badges */}
       <div className="border-b border-champagne/10 bg-obsidian/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-2 sm:gap-y-3">
             {TRUST_BADGES.map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-2">
                 <Icon size={14} className="text-champagne/70" />
@@ -108,7 +108,7 @@ export default function Footer() {
 
       {/* Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
             <ButterflyLogo size="sm" />

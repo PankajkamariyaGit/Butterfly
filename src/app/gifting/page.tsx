@@ -62,7 +62,7 @@ export default function GiftingPage() {
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 py-24">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }}>
             <div className="flex items-center gap-2 mb-4"><Gift size={16} className="text-rose-gold" /><span className="text-[10px] font-body text-rose-gold tracking-[0.4em] uppercase">Premium Gifting</span></div>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-ivory leading-[0.92]">Give the<br /><em className="text-rose-gold-light">Gift</em> of<br />Butterfly</h1>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl text-ivory leading-[0.92]">Give the<br /><em className="text-rose-gold-light">Gift</em> of<br />Butterfly</h1>
             <p className="mt-6 font-body text-ivory/65 text-base leading-relaxed max-w-lg">Every Butterfly gift arrives in our signature luxury box — beautifully wrapped, ready to treasure. Turn any occasion into an unforgettable memory.</p>
             <a href="#gift-boxes" className="mt-8 inline-flex items-center gap-2 px-7 py-4 bg-rose-gold text-white font-body text-sm tracking-[0.15em] uppercase rounded-full hover:bg-rose-gold-dark transition-colors">
               <Gift size={14} /> Shop Gift Sets

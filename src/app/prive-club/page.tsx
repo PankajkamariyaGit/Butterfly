@@ -92,7 +92,7 @@ export default function PriveClubPage() {
                 <div className="w-6 h-6 rounded-full bg-champagne/20 border border-champagne/40 flex items-center justify-center"><Crown size={12} className="text-champagne" /></div>
                 <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Members Only</span>
               </div>
-              <h1 className="font-display text-6xl sm:text-7xl text-ivory leading-[0.9]">
+              <h1 className="font-display text-4xl sm:text-6xl sm:text-7xl text-ivory leading-[0.9]">
                 Butterfly<br /><em className="text-champagne">Privé</em><br />Club
               </h1>
               <p className="mt-6 font-body text-ivory/55 text-base leading-relaxed max-w-md">

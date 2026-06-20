@@ -138,7 +138,7 @@ export default function HomePage() {
               <motion.p variants={fadeUp} className="text-xs font-body text-champagne-light tracking-[0.4em] uppercase mb-6 flex items-center gap-2">
                 <span className="w-8 h-px bg-champagne/60" />Fine Jewellery Collection 2026<span className="w-8 h-px bg-champagne/60" />
               </motion.p>
-              <motion.h1 variants={fadeUp} className="font-display text-6xl sm:text-7xl lg:text-8xl text-ivory leading-[0.92] tracking-tight">
+              <motion.h1 variants={fadeUp} className="font-display text-4xl sm:text-6xl lg:text-8xl text-ivory leading-[0.92] tracking-tight">
                 Jewellery<br />
                 <em className="text-gradient-gold not-italic">That</em><br />
                 Lets You<br />
@@ -200,7 +200,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -60 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}>
               <p className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase mb-6">✦ The Butterfly Philosophy</p>
-              <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-obsidian leading-[0.9] tracking-tight">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl text-obsidian leading-[0.9] tracking-tight">
                 Worn by<br /><em className="text-rose-gold">Women</em><br />Who Dare<br />to Shine
               </h2>
               <div className="mt-8 w-16 h-px bg-champagne" />
@@ -246,7 +246,7 @@ export default function HomePage() {
             <motion.p variants={fadeUp} className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase mb-3">✦ Curated for You</motion.p>
             <motion.h2 variants={fadeUp} className="font-display text-5xl sm:text-6xl text-obsidian">The Collections</motion.h2>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {CATEGORIES.filter((c) => c.featured).slice(0, 4).map((cat, i) => (
               <motion.div key={cat.id} className={`group relative overflow-hidden rounded-2xl ${i === 0 ? "md:col-span-2 h-72 md:h-96" : "h-52 md:h-64"}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }} whileHover={{ scale: 1.02 }} data-cursor="Explore">
                 <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -273,8 +273,7 @@ export default function HomePage() {
             </div>
             <Link href="/products?filter=new" className="hidden md:flex items-center gap-2 font-body text-sm text-mink-light hover:text-champagne transition-colors tracking-[0.15em] uppercase">View All <ArrowRight size={14} /></Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            {newArrivals.map((product, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">.map((product, i) => (
               <motion.div key={product.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
                 <ProductCard product={product} />
               </motion.div>
@@ -290,7 +289,7 @@ export default function HomePage() {
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 h-full flex items-center min-h-[500px] md:min-h-[620px]">
           <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="max-w-xl">
             <div className="flex items-center gap-2 mb-6"><Crown size={14} className="text-champagne" /><span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Bridal Studio 2026</span></div>
-            <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-ivory leading-[0.92]">
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl text-ivory leading-[0.92]">
               Your Dream<br /><em className="text-champagne">Bridal</em><br />Jewellery
             </h2>
             <p className="mt-6 font-body text-ivory/65 text-base leading-relaxed">From the first look to the last dance — curated bridal jewellery sets, personalised look-building, and expert styling guidance for your most treasured day.</p>
@@ -314,7 +313,7 @@ export default function HomePage() {
             </div>
             <Link href="/products?filter=bestseller" className="hidden md:flex items-center gap-2 font-body text-sm text-mink-light hover:text-champagne transition-colors tracking-[0.15em] uppercase">View All <ArrowRight size={14} /></Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {bestsellers.map((product, i) => (
               <motion.div key={product.id} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
                 <ProductCard product={product} />
@@ -357,7 +356,7 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-r from-[#0F0B08] via-[#1A0E2E] to-[#1C0A14] overflow-hidden relative">
         <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(255,62,122,0.10) 0%, transparent 60%)" }} />
         <div className="max-w-4xl mx-auto px-6 sm:px-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <AnimatedStat value={3700} suffix="+" label="Happy Customers" />
             <AnimatedStat value={300} suffix="+" label="Products" />
             <AnimatedStat value={99} suffix="%" label="Satisfaction Rate" />
@@ -455,46 +454,6 @@ export default function HomePage() {
         </div>
       </section>
       )}
-
-      {/* BUTTERFLY INSIDERS ─────────────────────────────────────── */}
-      <section className="py-24 bg-pearl overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-obsidian via-mink to-obsidian p-10 md:p-16">
-            <div className="relative grid md:grid-cols-2 gap-10 items-center">
-              <div>
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-5 h-5 rounded-full bg-champagne/20 border border-champagne/40 flex items-center justify-center"><Crown size={10} className="text-champagne" /></div>
-                  <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Loyalty Program</span>
-                </div>
-                <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ivory leading-[0.95]">Butterfly<br /><em className="text-champagne">Insiders</em></h2>
-                <p className="mt-6 font-body text-ivory/60 text-base leading-relaxed">Earn points on every purchase, get exclusive birthday discounts, and be first to know about new collections — all via WhatsApp.</p>
-                <a
-                  href={`https://wa.me/919833509027?text=${encodeURIComponent("Hi! I'd like to join the Butterfly Insiders program 🦋")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-champagne to-champagne-dark text-white font-body text-sm tracking-[0.12em] uppercase rounded-full hover:shadow-luxury-xl transition-shadow"
-                >
-                  Join on WhatsApp
-                </a>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { icon: "✦", label: "Earn Points", desc: "1 point per ₹10 spent. Redeem on future orders" },
-                  { icon: "◆", label: "Birthday Gift", desc: "Exclusive ₹200 off coupon on your birthday month" },
-                  { icon: "♦", label: "Early Access", desc: "Shop new collections before they go live" },
-                  { icon: "✧", label: "Members-Only Deals", desc: "WhatsApp-exclusive flash sales and offers" },
-                ].map((b) => (
-                  <div key={b.label} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
-                    <span className="text-champagne text-lg">{b.icon}</span>
-                    <p className="font-body text-xs font-semibold text-ivory mt-2 mb-1">{b.label}</p>
-                    <p className="text-[10px] font-body text-ivory/40 leading-relaxed">{b.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* TESTIMONIALS ────────────────────────────────────────── */}
       <section className="py-24 bg-gradient-to-b from-[#FFF8F0] to-white overflow-hidden">

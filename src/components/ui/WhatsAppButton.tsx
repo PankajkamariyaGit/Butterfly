@@ -84,7 +84,7 @@ export default function WhatsAppButton() {
                 />
                 <button
                   onClick={() => sendMessage()}
-                  className="w-9 h-9 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:bg-[#20BA5A] transition-colors flex-shrink-0"
+                  className="w-9 h-9 rounded-full bg-gradient-to-br from-champagne to-[#b8922a] flex items-center justify-center text-white hover:opacity-90 transition-opacity flex-shrink-0"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
@@ -99,7 +99,7 @@ export default function WhatsAppButton() {
         onClick={() => setOpen(!open)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 rounded-full bg-obsidian border-2 border-[#25D366]/70 shadow-lg shadow-black/40 flex items-center justify-center text-[#25D366] relative"
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#1a1408] to-obsidian border border-champagne/50 shadow-[0_4px_24px_rgba(201,168,76,0.35)] flex items-center justify-center text-champagne relative"
         aria-label="Chat on WhatsApp"
       >
         <AnimatePresence mode="wait">
@@ -114,7 +114,7 @@ export default function WhatsAppButton() {
           )}
         </AnimatePresence>
         {/* Pulse ring */}
-        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20" />
+        <span className="absolute inset-0 rounded-full bg-champagne animate-ping opacity-15" />
       </motion.button>
     </div>
   );

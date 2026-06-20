@@ -32,8 +32,8 @@ export default function ContactPage() {
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }} className="lg:col-span-2 space-y-6">
             {[
               { icon: Mail, label: "Email", value: "hello@butterfly.in", sub: "Replies within 24 hours" },
-              { icon: Phone, label: "Phone / WhatsApp", value: "+91 98765 43210", sub: "Mon–Sat, 10am–7pm" },
-              { icon: MapPin, label: "Studio Address", value: "12 Rose Garden Lane, Bandra West", sub: "Mumbai — 400050" },
+              { icon: Phone, label: "Phone / WhatsApp", value: "+91 98336 09027", sub: "Mon–Sat, 10am–7pm" },
+              { icon: MapPin, label: "Studio Address", value: "Butterfly, Kalakhet Road No. 1", sub: "Mandsaur, MP 458001" },
               { icon: Clock, label: "Working Hours", value: "Mon–Sat: 10am–7pm", sub: "Sun: 11am–4pm" },
             ].map(({ icon: Icon, label, value, sub }) => (
               <div key={label} className="flex gap-4 p-5 bg-white border border-champagne/10 rounded-2xl">

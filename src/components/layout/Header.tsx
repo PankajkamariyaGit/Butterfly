@@ -139,7 +139,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "flex items-center gap-1 text-xs font-body font-medium tracking-widest uppercase transition-colors duration-200",
+                      "flex items-center gap-1 text-sm font-body font-medium tracking-widest uppercase transition-colors duration-200",
                       pathname === link.href ? "text-champagne" : "text-mink hover:text-champagne"
                     )}
                   >

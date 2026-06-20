@@ -61,8 +61,8 @@ export default function FAQPage() {
             <h2 className="font-display text-3xl text-obsidian mb-8">Get in Touch</h2>
             <div className="space-y-4 mb-8">
               {[
-                { icon: Mail, label: "Email Us", value: "support@butterfly.com" },
-                { icon: Phone, label: "Call Us", value: "+91 98765 43210" },
+                { icon: Mail, label: "Email Us", value: "pankajkkamariya@gmail.com" },
+                { icon: Phone, label: "Call Us", value: "+91 98336 09027" },
                 { icon: MapPin, label: "Visit Us", value: "Mumbai, Maharashtra, India" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4 glass-card rounded-sm p-4">

@@ -11,17 +11,14 @@ import toast from "react-hot-toast";
 const FOOTER_LINKS = {
   Shop: [
     { label: "New Arrivals", href: "/products?filter=new" },
-    { label: "Bridal Studio", href: "/bridal-studio" },
     { label: "Bestsellers", href: "/products?filter=bestseller" },
     { label: "Earrings", href: "/products?category=earrings" },
     { label: "Necklaces", href: "/products?category=necklaces" },
     { label: "Virtual Try-On", href: "/virtual-try-on" },
   ],
   Experiences: [
-    { label: "Butterfly Privé Club", href: "/prive-club" },
     { label: "Gifting Experience", href: "/gifting" },
-    { label: "WhatsApp Support", href: "https://wa.me/919876543210" },
-    { label: "Bridal Consultation", href: "/bridal-studio#appointment" },
+    { label: "WhatsApp Support", href: "https://wa.me/919833509027" },
     { label: "Track Order", href: "/track-order" },
     { label: "Size Guide", href: "/size-guide" },
   ],
@@ -85,7 +82,7 @@ export default function Footer() {
             <div>
               <p className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase mb-3">✦ Inner Circle</p>
               <h3 className="font-display text-4xl text-ivory leading-tight">Stay in the<br /><em className="text-champagne">Butterfly</em> Loop</h3>
-              <p className="mt-3 font-body text-ivory/40 text-sm leading-relaxed max-w-sm">Join 12,000+ subscribers. Early access, exclusive offers, and styling inspiration — no spam, only beauty.</p>
+              <p className="mt-3 font-body text-ivory/40 text-sm leading-relaxed max-w-sm">Join 3,700+ subscribers. Early access, exclusive offers, and styling inspiration — no spam, only beauty.</p>
             </div>
             <div>
               {subscribed ? (
@@ -116,7 +113,7 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <ButterflyLogo size="sm" />
             <p className="text-sm font-body text-ivory/35 mt-5 leading-relaxed max-w-xs">
-              Premium artificial jewellery crafted for the modern Indian woman — from everyday elegance to bridal grandeur. Est. 2019.
+              Premium artificial jewellery crafted for the modern Indian woman — from everyday elegance to bridal grandeur. Est. 2021.
             </p>
             <div className="flex gap-3 mt-6">
               {[{ icon: Instagram, href: "#", label: "Instagram" }, { icon: Facebook, href: "#", label: "Facebook" }, { icon: Youtube, href: "#", label: "YouTube" }, { icon: Twitter, href: "#", label: "Twitter" }].map(({ icon: Icon, href, label }) => (
@@ -128,9 +125,9 @@ export default function Footer() {
             {/* Contact */}
             <div className="mt-8 space-y-2.5">
               {[
-                { icon: Mail, text: "support@butterfly.com" },
-                { icon: Phone, text: "+91 98765 43210" },
-                { icon: MapPin, text: "Mumbai, India" },
+                { icon: Mail, text: "pankajkkamariya@gmail.com" },
+                { icon: Phone, text: "+91 98336 09027" },
+                { icon: MapPin, text: "Mandsaur, MP 458001" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2.5">
                   <Icon size={12} className="text-champagne/50 flex-shrink-0" />
@@ -162,7 +159,7 @@ export default function Footer() {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1.5">
               {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={11} fill="currentColor" className="text-champagne" />)}
-              <span className="text-xs font-body text-ivory/50 ml-1">4.9 / 5 · 12,000+ Reviews</span>
+              <span className="text-xs font-body text-ivory/50 ml-1">4.6 / 5 · 3,700+ Reviews</span>
             </div>
             <span className="text-[10px] font-body text-ivory/25 hidden md:block">Verified by happy customers</span>
           </div>

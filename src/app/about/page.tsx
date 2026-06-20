@@ -42,7 +42,7 @@ export default function AboutPage() {
             <h2 className="font-display text-4xl text-obsidian mb-6">Luxury for Every Woman</h2>
             <div className="space-y-4 text-sm font-body text-mink-light leading-relaxed">
               <p>
-                Butterfly was founded in 2019 with a single, passionate vision: to make premium jewellery
+                Butterfly was founded in 2021 with a single, passionate vision: to make premium jewellery
                 accessible to every woman who deserves to feel like royalty.
               </p>
               <p>
@@ -67,7 +67,7 @@ export default function AboutPage() {
             </div>
             <div className="absolute -bottom-6 -left-6 glass-card rounded-sm p-4 shadow-luxury hidden sm:block">
               <ButterflyIcon size={32} />
-              <p className="font-display text-2xl text-champagne mt-1">2019</p>
+              <p className="font-display text-2xl text-champagne mt-1">2021</p>
               <p className="text-xs font-body text-mink-light">Founded</p>
             </div>
           </div>

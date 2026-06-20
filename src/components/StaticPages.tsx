@@ -52,7 +52,7 @@ export function ReturnPolicy() {
       <h2>Refund Process</h2>
       <p>Once your return is received and inspected, we will send a confirmation email. Refunds are processed within 5–7 business days to your original payment method.</p>
       <h2>How to Initiate a Return</h2>
-      <p>Contact us at <strong>support@butterfly.com</strong> or WhatsApp us at +91 98765 43210 with your order ID and reason for return.</p>
+      <p>Contact us at <strong>pankajkkamariya@gmail.com</strong> or WhatsApp us at +91 98336 09027 with your order ID and reason for return.</p>
     </PolicyPage>
   );
 }

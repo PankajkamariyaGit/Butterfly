@@ -39,7 +39,7 @@ const GIFT_BOXES = [
     subtitle: "The ultimate luxury gift",
     price: "₹7,999",
     image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=85",
-    includes: ["3+ Premium Pieces", "Premium Gift Set Box", "Fragrant Tissue", "Gold Ribbon & Bow", "Handwritten Card", "Butterfly Dust Bag"],
+    includes: ["3+ Premium Pieces", "Premium Gift Set Box", "Fragrant Tissue", "Gold Ribbon & Bow", "Handwritten Card", "Premium Jewellery Pouch"],
     badge: "Premium",
   },
 ];

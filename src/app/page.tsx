@@ -12,6 +12,11 @@ import { ButterflyIcon } from "@/components/ui/ButterflyLogo";
 import RecentlyViewed from "@/components/ui/RecentlyViewed";
 import { useRecentlyViewedStore } from "@/store";
 
+// ── Feature flags — set true/false to show or hide sections ──────────
+const SHOW_BRIDAL_STUDIO = false;       // set true to re-enable bridal banner
+const SHOW_FESTIVE_COLLECTIONS = false; // set true to re-enable festive section
+const SHOW_INFLUENCER_LOVES = false;    // set true to re-enable influencer section
+
 
 /* ── Mouse spotlight ──────────────────────────────────────────── */
 function MouseSpotlight() {
@@ -63,7 +68,7 @@ function Butterfly3D({ size = 120 }: { size?: number }) {
 }
 
 /* ── Animated stat counter ────────────────────────────────────── */
-function AnimatedStat({ value, suffix = "", label }: { value: number; suffix?: string; label: string }) {
+function AnimatedStat({ value, suffix = "", label, decimals = 0 }: { value: number; suffix?: string; label: string; decimals?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
@@ -77,12 +82,12 @@ function AnimatedStat({ value, suffix = "", label }: { value: number; suffix?: s
     const steps = 60;
     const inc = value / steps;
     let cur = 0;
-    const t = setInterval(() => { cur += inc; if (cur >= value) { setCount(value); clearInterval(t); } else setCount(Math.floor(cur)); }, 1800 / steps);
+    const t = setInterval(() => { cur += inc; if (cur >= value) { setCount(value); clearInterval(t); } else setCount(parseFloat(cur.toFixed(decimals))); }, 1800 / steps);
     return () => clearInterval(t);
-  }, [started, value]);
+  }, [started, value, decimals]);
   return (
     <div ref={ref} className="text-center">
-      <p className="font-display text-4xl sm:text-5xl text-champagne">{count.toLocaleString()}{suffix}</p>
+      <p className="font-display text-4xl sm:text-5xl text-champagne">{count.toFixed(decimals)}{suffix}</p>
       <p className="text-xs font-body text-ivory/50 tracking-[0.2em] uppercase mt-1">{label}</p>
     </div>
   );
@@ -150,10 +155,12 @@ export default function HomePage() {
                   <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
                   <div className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
                 </Link>
-                <Link href="/bridal-studio" className="flex items-center gap-2 text-ivory/80 hover:text-champagne-light font-body text-sm tracking-[0.12em] uppercase transition-colors">
-                  <span className="w-7 h-7 rounded-full border border-[#FFB800]/50 flex items-center justify-center"><Crown size={12} className="text-champagne-light" /></span>
-                  Bridal Studio
-                </Link>
+                {SHOW_BRIDAL_STUDIO && (
+                  <Link href="/bridal-studio" className="flex items-center gap-2 text-ivory/80 hover:text-champagne-light font-body text-sm tracking-[0.12em] uppercase transition-colors">
+                    <span className="w-7 h-7 rounded-full border border-[#FFB800]/50 flex items-center justify-center"><Crown size={12} className="text-champagne-light" /></span>
+                    Bridal Studio
+                  </Link>
+                )}
               </motion.div>
             </motion.div>
           </div>
@@ -222,7 +229,7 @@ export default function HomePage() {
               </motion.div>
               <motion.div className="absolute bottom-12 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-luxury" animate={{ y: [0, -5, 0] }} transition={{ duration: 4, delay: 0.8, repeat: Infinity }}>
                 <div className="flex items-center gap-2"><Star size={12} fill="currentColor" className="text-champagne" /><span className="font-body text-xs font-semibold text-obsidian">4.9 / 5.0</span></div>
-                <p className="text-[9px] font-body text-mink-light mt-0.5">12,000+ happy customers</p>
+                <p className="text-[9px] font-body text-mink-light mt-0.5">3,700+ happy customers</p>
               </motion.div>
             </motion.div>
           </div>
@@ -277,8 +284,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* BRIDAL BANNER ───────────────────────────────────────── */}
-      <section className="relative overflow-hidden min-h-[500px] md:min-h-[620px]">
+      {/* BRIDAL BANNER ───────────────────────────────────────── */}      {SHOW_BRIDAL_STUDIO && (      <section className="relative overflow-hidden min-h-[500px] md:min-h-[620px]">
         <Image src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=2000&q=90" alt="Bridal Studio" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-obsidian/90 via-obsidian/60 to-obsidian/20" />
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 h-full flex items-center min-h-[500px] md:min-h-[620px]">
@@ -297,8 +303,7 @@ export default function HomePage() {
             </div>
           </motion.div>
         </div>
-      </section>
-
+      </section>      )}
       {/* BESTSELLERS ─────────────────────────────────────────── */}
       <section className="py-24 bg-gradient-to-b from-white to-[#FFFBF0]">
         <div className="max-w-7xl mx-auto px-6 sm:px-10">
@@ -353,15 +358,16 @@ export default function HomePage() {
         <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(255,62,122,0.10) 0%, transparent 60%)" }} />
         <div className="max-w-4xl mx-auto px-6 sm:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <AnimatedStat value={12000} suffix="+" label="Happy Customers" />
-            <AnimatedStat value={248} suffix="+" label="Products" />
+            <AnimatedStat value={3700} suffix="+" label="Happy Customers" />
+            <AnimatedStat value={300} suffix="+" label="Products" />
             <AnimatedStat value={99} suffix="%" label="Satisfaction Rate" />
-            <AnimatedStat value={5} suffix=" ★" label="Avg Rating" />
+            <AnimatedStat value={4.6} suffix=" ★" label="Avg Rating" decimals={1} />
           </div>
         </div>
       </section>
 
       {/* FESTIVE COLLECTIONS ─────────────────────────────────── */}
+      {SHOW_FESTIVE_COLLECTIONS && (
       <section className="py-24 bg-gradient-to-br from-[#2D0A1F] via-[#1A0E2E] to-[#1C0A0A] overflow-hidden relative">
         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A017' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
         <div className="max-w-7xl mx-auto px-6 sm:px-10 relative">
@@ -448,8 +454,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
-      {/* PRIVÉ CLUB TEASER ───────────────────────────────────── */}
+      {/* BUTTERFLY INSIDERS ─────────────────────────────────────── */}
       <section className="py-24 bg-pearl overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10">
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-obsidian via-mink to-obsidian p-10 md:p-16">
@@ -457,20 +464,25 @@ export default function HomePage() {
               <div>
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-5 h-5 rounded-full bg-champagne/20 border border-champagne/40 flex items-center justify-center"><Crown size={10} className="text-champagne" /></div>
-                  <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Members Only</span>
+                  <span className="text-[10px] font-body text-champagne tracking-[0.4em] uppercase">Loyalty Program</span>
                 </div>
-                <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ivory leading-[0.95]">Butterfly<br /><em className="text-champagne">Privé</em> Club</h2>
-                <p className="mt-6 font-body text-ivory/60 text-base leading-relaxed">Join our exclusive circle. Early access to collections, VIP discounts, birthday rewards, loyalty points, and private shopping events.</p>
-                <Link href="/prive-club" className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-champagne to-champagne-dark text-white font-body text-sm tracking-[0.12em] uppercase rounded-full hover:shadow-luxury-xl transition-shadow" data-cursor="Join">
-                  <Crown size={14} /><span>Join Butterfly Privé</span>
-                </Link>
+                <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-ivory leading-[0.95]">Butterfly<br /><em className="text-champagne">Insiders</em></h2>
+                <p className="mt-6 font-body text-ivory/60 text-base leading-relaxed">Earn points on every purchase, get exclusive birthday discounts, and be first to know about new collections — all via WhatsApp.</p>
+                <a
+                  href={`https://wa.me/919833509027?text=${encodeURIComponent("Hi! I'd like to join the Butterfly Insiders program 🦋")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-champagne to-champagne-dark text-white font-body text-sm tracking-[0.12em] uppercase rounded-full hover:shadow-luxury-xl transition-shadow"
+                >
+                  Join on WhatsApp
+                </a>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: "✦", label: "Early Access", desc: "Shop new collections 48hrs before anyone else" },
-                  { icon: "◆", label: "VIP Discounts", desc: "Up to 20% off on all purchases" },
-                  { icon: "♦", label: "Loyalty Points", desc: "Earn & redeem on every purchase" },
-                  { icon: "✧", label: "Birthday Rewards", desc: "Exclusive gift every birthday month" },
+                  { icon: "✦", label: "Earn Points", desc: "1 point per ₹10 spent. Redeem on future orders" },
+                  { icon: "◆", label: "Birthday Gift", desc: "Exclusive ₹200 off coupon on your birthday month" },
+                  { icon: "♦", label: "Early Access", desc: "Shop new collections before they go live" },
+                  { icon: "✧", label: "Members-Only Deals", desc: "WhatsApp-exclusive flash sales and offers" },
                 ].map((b) => (
                   <div key={b.label} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
                     <span className="text-champagne text-lg">{b.icon}</span>
@@ -510,6 +522,7 @@ export default function HomePage() {
       </section>
 
       {/* INFLUENCER GALLERY ───────────────────────────────────── */}
+      {SHOW_INFLUENCER_LOVES && (
       <section className="py-24 bg-gradient-to-br from-[#1A0E2E] to-[#0F0B08] overflow-hidden relative">
         <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(255,62,122,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 30%, rgba(124,58,237,0.08) 0%, transparent 60%)" }} />
         <div className="max-w-7xl mx-auto px-6 sm:px-10 relative">
@@ -561,6 +574,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* INSTAGRAM / UGC GALLERY ────────────────────────────── */}
       <section className="pb-0 pt-16 bg-gradient-to-b from-white to-[#FFF5FB] overflow-hidden">

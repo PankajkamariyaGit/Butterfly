@@ -183,7 +183,7 @@ export default function AdminUsersPage() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-body font-semibold text-ivory/90">Admin</p>
-            <p className="text-xs font-body text-ivory/40">admin@butterfly.com</p>
+            <p className="text-xs font-body text-ivory/40">pankajkkamariya@gmail.com</p>
           </div>
           <span className="text-[10px] font-body font-semibold tracking-widest uppercase px-2.5 py-1 rounded bg-champagne/20 text-champagne">Admin</span>
           <span className="text-[10px] font-body text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">Active</span>

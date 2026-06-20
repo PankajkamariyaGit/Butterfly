@@ -96,7 +96,7 @@ export default function AdminOrdersPage() {
       <div style="margin-top:12px;font-size:12px;color:#6b5040;line-height:1.8;">
         123 Jewellery Lane, Zaveri Bazaar<br/>Mumbai, Maharashtra – 400 003<br/>
         GST No: 27AABCB1234A1Z5<br/>
-        support@butterfly.com &nbsp;|&nbsp; +91 98765 43210
+        pankajkkamariya@gmail.com &nbsp;|&nbsp; +91 98336 09027
       </div>
     </div>
     <div style="text-align:right;">
@@ -176,7 +176,7 @@ export default function AdminOrdersPage() {
       <div style="font-size:13px;font-weight:700;color:#1a1512;margin-bottom:4px;">Thank you for your order!</div>
       <div style="font-size:11px;color:#8b6f5e;line-height:1.8;">
         Returns accepted within 7 days of delivery.<br/>
-        For support: support@butterfly.com | +91 98765 43210
+        For support: pankajkkamariya@gmail.com | +91 98336 09027
       </div>
     </div>
     <div style="text-align:right;">
@@ -187,7 +187,7 @@ export default function AdminOrdersPage() {
   </div>
 
   <div style="text-align:center;margin-top:32px;font-size:10px;color:#b5a090;letter-spacing:0.15em;">
-    ★ BUTTERFLY FINE JEWELLERY — EST. 2019 ★
+    ★ BUTTERFLY FINE JEWELLERY — EST. 2021 ★
   </div>
 </div>
 

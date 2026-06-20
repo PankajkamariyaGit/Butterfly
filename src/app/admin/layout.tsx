@@ -107,6 +107,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     );
   }
 
+  // After guard, user is guaranteed non-null
+  const authUser = user!;
+
   return (
     <div className="min-h-screen bg-[#0F0D08] flex">
       {/* Sidebar */}
@@ -135,7 +138,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           {/* Nav — filtered by role permissions */}
           <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
-            {NAV.filter(({ section }) => hasPermission(user.role as StaffRole, section)).map(({ href, label, icon: Icon }) => {
+            {NAV.filter(({ section }) => hasPermission(authUser.role as StaffRole, section)).map(({ href, label, icon: Icon }) => {
               const active = pathname === href || (href !== "/admin" && pathname.startsWith(href));
               return (
                 <Link
@@ -161,18 +164,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="p-4 border-t border-champagne/10">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-8 h-8 rounded-full bg-gradient-luxury flex items-center justify-center text-white text-xs font-bold">
-                {user.avatar}
+                {authUser.avatar}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-body font-semibold text-ivory/80 truncate">{user.name}</p>
-                <p className="text-[10px] font-body text-ivory/40 truncate">{user.email}</p>
+                <p className="text-xs font-body font-semibold text-ivory/80 truncate">{authUser.name}</p>
+                <p className="text-[10px] font-body text-ivory/40 truncate">{authUser.email}</p>
                 <span className={cn(
                   "inline-block text-[9px] font-body font-semibold tracking-widest uppercase px-1.5 py-0.5 rounded mt-0.5",
-                  user.role === "admin" ? "bg-champagne/20 text-champagne" :
-                  user.role === "manager" ? "bg-blue-400/20 text-blue-400" :
+                  authUser.role === "admin" ? "bg-champagne/20 text-champagne" :
+                  authUser.role === "manager" ? "bg-blue-400/20 text-blue-400" :
                   "bg-green-400/20 text-green-400"
                 )}>
-                  {user.role}
+                  {authUser.role}
                 </span>
               </div>
             </div>

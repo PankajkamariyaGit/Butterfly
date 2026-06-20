@@ -125,7 +125,7 @@ function getAIResponse(query: string): { text: string; products?: typeof PRODUCT
   if (q.includes("new") || q.includes("latest") || q.includes("launch") || q.includes("arrivals")) {
     return {
       text: "Fresh arrivals just landed! ✨ Our newest pieces feature bold kundan work and contemporary designs that blend traditional craftsmanship with modern aesthetics. These sell out fast — I'd recommend adding to your wishlist right away!",
-      products: PRODUCTS.filter((p) => p.badge === "New Arrival" || p.new).slice(0, 3).concat(PRODUCTS.slice(0, 2)),
+      products: PRODUCTS.filter((p) => p.badge === "New Arrival").slice(0, 3).concat(PRODUCTS.slice(0, 2)),
     };
   }
 

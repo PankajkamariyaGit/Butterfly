@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Jost", "Inter", sans-serif;
+
+  /* Butterfly Brand Colors */
+  --color-ivory: #FDFBF7;
+  --color-ivory-dark: #F5F0E8;
+  --color-champagne: #D4A017;
+  --color-champagne-light: #F0C040;
+  --color-champagne-dark: #A07818;
+  --color-rose-gold: #E05A7A;
+  --color-rose-gold-light: #F08095;
+  --color-rose-gold-dark: #B03858;
+  --color-pearl: #F8F4EF;
+  --color-blush: #FFF0F4;
+  --color-blush-deep: #FFD6E0;
+  --color-obsidian: #0F0B08;
+  --color-mink: #4A3728;
+  --color-mink-light: #7A6050;
+  --color-gold-gradient-from: #D4A017;
+  --color-gold-gradient-to: #E05A7A;
+  /* Vivid accent palette */
+  --color-vivid-rose: #FF3E7A;
+  --color-vivid-gold: #FFB800;
+  --color-vivid-violet: #7C3AED;
+  --color-vivid-teal: #0D9488;
+  --color-vivid-coral: #FF5F40;
+  --color-vivid-emerald: #059669;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FDFBF7;
+    color: #1A1409;
+    font-family: "Jost", "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Ensure all interactive elements show pointer cursor */
+  button:not(:disabled),
+  [role="button"],
+  a,
+  label[for],
+  select,
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", "Georgia", serif;
+  }
+
+  ::selection {
+    background-color: #E8D08A;
+    color: #1A1409;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F5F0E8;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C9A84C;
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Cormorant Garamond", "Georgia", serif;
+  }
+
+  .font-body {
+    font-family: "Jost", "Inter", sans-serif;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D4A017 0%, #FFB800 40%, #E05A7A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-vivid {
+    background: linear-gradient(135deg, #FF3E7A 0%, #FFB800 50%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-luxury {
+    background: linear-gradient(135deg, #D4A017 0%, #E05A7A 100%);
+  }
+
+  .bg-gradient-vivid {
+    background: linear-gradient(135deg, #FF3E7A 0%, #FFB800 50%, #7C3AED 100%);
+  }
+
+  .bg-gradient-jewel {
+    background: linear-gradient(135deg, #7C3AED 0%, #E05A7A 50%, #D4A017 100%);
+  }
+
+  .bg-gradient-sunset {
+    background: linear-gradient(135deg, #FF5F40 0%, #FFB800 50%, #E05A7A 100%);
+  }
+
+  .bg-gradient-pearl {
+    background: linear-gradient(180deg, #FDFBF7 0%, #F8F4EF 100%);
+  }
+
+  .bg-gradient-blush {
+    background: linear-gradient(135deg, #FFF0F4 0%, #FFD6E0 100%);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 160, 23, 0.25);
+    box-shadow: 0 8px 32px rgba(224, 90, 122, 0.10);
+  }
+
+  .glass-card-dark {
+    background: rgba(15, 11, 8, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 160, 23, 0.35);
+  }
+
+  .shadow-luxury {
+    box-shadow: 0 4px 24px rgba(224, 90, 122, 0.18), 0 2px 8px rgba(212, 160, 23, 0.12);
+  }
+
+  .shadow-luxury-lg {
+    box-shadow: 0 16px 48px rgba(224, 90, 122, 0.22), 0 4px 16px rgba(212, 160, 23, 0.15);
+  }
+
+  .shadow-luxury-xl {
+    box-shadow: 0 24px 64px rgba(224, 90, 122, 0.28), 0 8px 24px rgba(212, 160, 23, 0.18);
+  }
+
+  .border-gold {
+    border-color: #D4A017;
+  }
+
+  .border-rose-gold {
+    border-color: #E05A7A;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(224, 90, 122, 0.25);
+  }
+
+  .btn-luxury {
+    background: linear-gradient(135deg, #D4A017 0%, #E05A7A 100%);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(212, 160, 23, 0.35);
+  }
+
+  .btn-luxury::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-luxury:hover::before {
+    left: 100%;
+  }
+
+  .btn-luxury:hover {
+    box-shadow: 0 10px 32px rgba(224, 90, 122, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-luxury {
+    background: transparent;
+    color: #D4A017;
+    padding: 11px 32px;
+    border-radius: 50px;
+    border: 2px solid #D4A017;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-outline-luxury:hover {
+    background: linear-gradient(135deg, #D4A017 0%, #E05A7A 100%);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 10px 32px rgba(224, 90, 122, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #D4A017, #FF3E7A, #7C3AED);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .luxury-input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(212, 160, 23, 0.35);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: "Jost", sans-serif;
+    font-size: 0.875rem;
+    color: #0F0B08;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+  }
+
+  .luxury-input:focus {
+    border-color: #C9A84C;
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+  }
+
+  .luxury-input::placeholder {
+    color: #7A6050;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+}

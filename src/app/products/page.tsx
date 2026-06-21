@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useMemo, useCallback, Suspense } from "react";
+import { useState, useMemo, useCallback, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Grid3X3, List, SlidersHorizontal, X, ChevronDown } from "lucide-react";
-import { PRODUCTS, CATEGORIES } from "@/lib/data";
+import { PRODUCTS, CATEGORIES, Product } from "@/lib/data";
 import { ProductCard } from "@/components/ui/ProductCard";
 
 type SortOption = "popular" | "newest" | "price-asc" | "price-desc";
@@ -22,6 +22,15 @@ function ProductsInner() {
   const filterParam = searchParams.get("filter") ?? "";
   const searchParam = searchParams.get("search") ?? "";
   const collectionParam = searchParams.get("collection") ?? "";
+
+  const [allProducts, setAllProducts] = useState<Product[]>(PRODUCTS);
+
+  useEffect(() => {
+    fetch("/api/products")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data && data.length > 0) setAllProducts(data); })
+      .catch(() => {});
+  }, []);
 
   // Map festive collection slugs to category/badge filters
   const COLLECTION_MAP: Record<string, string[]> = {
@@ -41,7 +50,7 @@ function ProductsInner() {
   const [search, setSearch] = useState(searchParam);
 
   const filtered = useMemo(() => {
-    let list = [...PRODUCTS];
+    let list = [...allProducts];
 
     if (filterParam === "new") list = list.filter((p) => p.newArrival);
     if (filterParam === "bestseller") list = list.filter((p) => p.bestseller);

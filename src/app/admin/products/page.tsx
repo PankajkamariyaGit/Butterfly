@@ -1,8 +1,8 @@
 ﻿"use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Edit2, Trash2, Search, ToggleLeft, ToggleRight, X, Upload, Youtube, ExternalLink } from "lucide-react";
+import { Plus, Edit2, Trash2, Search, ToggleLeft, ToggleRight, X, Upload, Youtube, ExternalLink, Loader2 } from "lucide-react";
 import { PRODUCTS, Product } from "@/lib/data";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
@@ -32,12 +32,33 @@ const CATEGORY_OPTIONS = [
 ];
 
 export default function AdminProductsPage() {
-  const [products, setProducts] = useState(PRODUCTS);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [search, setSearch] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      const res = await fetch("/api/products");
+      if (res.ok) {
+        const data = await res.json();
+        setProducts(data);
+      } else {
+        // Fallback to static data if DB not ready
+        setProducts(PRODUCTS);
+      }
+    } catch {
+      setProducts(PRODUCTS);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -65,17 +86,25 @@ export default function AdminProductsPage() {
     setShowForm(true);
   };
 
-  // Handle file upload â†’ convert to base64 data URL
-  const handleFileUpload = (idx: number, file: File) => {
-    if (file.size > 5 * 1024 * 1024) { toast.error("Image must be under 5MB"); return; }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const url = e.target?.result as string;
-      const newImages = [...form.images];
-      newImages[idx] = url;
-      setForm(f => ({ ...f, images: newImages }));
-    };
-    reader.readAsDataURL(file);
+  // Handle file upload → upload to server
+  const handleFileUpload = async (idx: number, file: File) => {
+    if (file.size > 10 * 1024 * 1024) { toast.error("Image must be under 10MB"); return; }
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.url) {
+        const newImages = [...form.images];
+        newImages[idx] = data.url;
+        setForm(f => ({ ...f, images: newImages }));
+        toast.success("Image uploaded!");
+      } else {
+        toast.error(data.error || "Upload failed");
+      }
+    } catch {
+      toast.error("Upload failed");
+    }
   };
 
   const addImageSlot = () => {
@@ -94,40 +123,56 @@ export default function AdminProductsPage() {
     setForm(f => ({ ...f, images: newImages }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!form.name || !form.price) { toast.error("Name and price are required"); return; }
+    setSaving(true);
     const validImages = form.images.filter(i => i.trim() !== "");
     if (validImages.length === 0) validImages.push("https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80");
 
-    if (editingId) {
-      setProducts(prev => prev.map(p => p.id === editingId
-        ? { ...p, name: form.name, price: form.price, discountPrice: form.discountPrice, category: form.category, categorySlug: form.categorySlug, stock: form.stock, badge: form.badge, description: form.description, material: form.material, careInstructions: form.careInstructions, featured: form.featured, bestseller: form.bestseller, newArrival: form.newArrival, active: form.active, sku: form.sku, tags: form.tags, images: validImages, slug: form.name.toLowerCase().replace(/\s+/g, "-") }
-        : p
-      ));
-      toast.success("Product updated!");
-    } else {
-      const newProduct: Product = {
-        name: form.name, price: form.price, discountPrice: form.discountPrice,
-        category: form.category, categorySlug: form.categorySlug,
-        stock: form.stock, badge: form.badge, description: form.description,
-        material: form.material, careInstructions: form.careInstructions,
-        featured: form.featured, bestseller: form.bestseller, newArrival: form.newArrival,
-        active: form.active, sku: form.sku, tags: form.tags,
-        id: `p-${Date.now()}`,
-        slug: form.name.toLowerCase().replace(/\s+/g, "-"),
-        images: validImages,
-        rating: 0, reviewCount: 0,
-      };
-      setProducts(prev => [newProduct, ...prev]);
-      toast.success("Product added!");
+    const payload = {
+      id: editingId || undefined,
+      name: form.name, price: form.price, discountPrice: form.discountPrice,
+      category: form.category, categorySlug: form.categorySlug,
+      stock: form.stock, badge: form.badge, description: form.description,
+      material: form.material, careInstructions: form.careInstructions,
+      featured: form.featured, bestseller: form.bestseller, newArrival: form.newArrival,
+      active: form.active, sku: form.sku, tags: form.tags,
+      images: validImages, videoUrl: form.videoUrl,
+    };
+
+    try {
+      const res = await fetch("/api/products", {
+        method: editingId ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success || data.id) {
+        toast.success(editingId ? "Product updated!" : "Product added!");
+        await fetchProducts();
+      } else {
+        toast.error(data.error || "Save failed");
+      }
+    } catch {
+      toast.error("Failed to save product");
     }
+    setSaving(false);
     setShowForm(false);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (!confirm("Delete this product?")) return;
-    setProducts(prev => prev.filter(p => p.id !== id));
-    toast.success("Product deleted");
+    try {
+      await fetch("/api/products", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setProducts(prev => prev.filter(p => p.id !== id));
+      toast.success("Product deleted");
+    } catch {
+      toast.error("Failed to delete");
+    }
   };
 
   const toggleActive = (id: string) => {

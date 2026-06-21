@@ -35,6 +35,7 @@ const NAV_LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -46,6 +47,12 @@ export default function Header() {
   const totalItems = useCartStore((s) => s.totalItems());
   const wishlistCount = useWishlistStore((s) => s.items.length);
   const { user, isAuthenticated, logout } = useAuthStore();
+
+  // Prevent hydration mismatch with persisted Zustand stores
+  useEffect(() => { setMounted(true); }, []);
+  const displayItems = mounted ? totalItems : 0;
+  const displayWishlist = mounted ? wishlistCount : 0;
+  const displayAuth = mounted ? isAuthenticated : false;
 
   // Smart search suggestions
   const suggestions = searchQuery.trim().length >= 1
@@ -209,9 +216,9 @@ export default function Header() {
                 aria-label="Wishlist"
               >
                 <Heart size={20} />
-                {wishlistCount > 0 && (
+                {displayWishlist > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-rose-gold text-white text-[9px] font-bold rounded-full flex items-center justify-center">
-                    {wishlistCount}
+                    {displayWishlist}
                   </span>
                 )}
               </Link>
@@ -223,20 +230,20 @@ export default function Header() {
                 aria-label="Cart"
               >
                 <ShoppingBag size={20} />
-                {totalItems > 0 && (
+                {displayItems > 0 && (
                   <motion.span
-                    key={totalItems}
+                    key={displayItems}
                     initial={{ scale: 1.5 }}
                     animate={{ scale: 1 }}
                     className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-champagne text-white text-[9px] font-bold rounded-full flex items-center justify-center"
                   >
-                    {totalItems}
+                    {displayItems}
                   </motion.span>
                 )}
               </Link>
 
               {/* Account */}
-              {isAuthenticated ? (
+              {displayAuth ? (
                 <div className="relative group hidden sm:block">
                   <button className="flex items-center gap-1.5 p-2 text-mink hover:text-champagne transition-colors">
                     <div className="w-7 h-7 bg-gradient-luxury rounded-full flex items-center justify-center text-white text-[10px] font-bold">
@@ -440,7 +447,7 @@ export default function Header() {
                   </div>
                 ))}
                 <div className="pt-3 flex gap-4">
-                  {isAuthenticated ? (
+                  {displayAuth ? (
                     <>
                       <Link href="/account" className="text-sm font-body text-mink hover:text-champagne" onClick={() => setMobileOpen(false)}>Account</Link>
                       <button onClick={() => { logout(); setMobileOpen(false); }} className="text-sm font-body text-mink-light hover:text-rose-gold">Logout</button>

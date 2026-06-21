@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Home, Search, Heart, ShoppingBag, User } from "lucide-react";
 import { useCartStore, useWishlistStore } from "@/store";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
   { icon: Home, label: "Home", href: "/" },
@@ -16,17 +17,22 @@ const NAV_ITEMS = [
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
   const { totalItems } = useCartStore();
   const { items: wishlistItems } = useWishlistStore();
 
   if (pathname.startsWith("/admin") || pathname.startsWith("/checkout")) return null;
+
+  const cartCount = mounted ? totalItems() : 0;
+  const wishCount = mounted ? wishlistItems.length : 0;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-[800] md:hidden bg-ivory/95 backdrop-blur-xl border-t border-champagne/15 safe-bottom">
       <div className="flex items-center justify-around px-2 py-2 pb-safe">
         {NAV_ITEMS.map(({ icon: Icon, label, href }) => {
           const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
-          const count = href === "/cart" ? totalItems() : href === "/wishlist" ? wishlistItems.length : 0;
+          const count = href === "/cart" ? cartCount : href === "/wishlist" ? wishCount : 0;
 
           return (
             <Link

@@ -18,13 +18,13 @@ export function getPool() {
   return pool;
 }
 
-export async function query<T = unknown>(sql: string, params?: unknown[]): Promise<T[]> {
+export async function query<T = unknown>(sql: string, params?: (string | number | boolean | null)[]): Promise<T[]> {
   const pool = getPool();
   const [rows] = await pool.execute(sql, params);
   return rows as T[];
 }
 
-export async function execute(sql: string, params?: unknown[]) {
+export async function execute(sql: string, params?: (string | number | boolean | null)[]) {
   const pool = getPool();
   const [result] = await pool.execute(sql, params);
   return result;
